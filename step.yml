@@ -1,0 +1,51 @@
+title: |-
+  infatuation-bitrise-step
+summary: |
+  Modifying git commit messages
+description: |
+  Getting rid of Co-authored-by: part of the commit message and replace it with Authored by: The Infatuation
+website: https://github.com/adamivancza/bitrise-step-infatuation-bitrise-step
+source_code_url: https://github.com/adamivancza/bitrise-step-infatuation-bitrise-step
+support_url: https://github.com/adamivancza/bitrise-step-infatuation-bitrise-step/issues
+host_os_tags:
+  - osx-10.10
+  - ubuntu-16.04
+
+type_tags:
+  - utility
+
+is_requires_admin_user: true
+is_always_run: false
+is_skippable: false
+run_if: ""
+
+deps:
+  brew:
+  - name: git
+  - name: wget
+  apt_get:
+  - name: git
+  - name: wget
+
+
+toolkit:
+  go:
+    package_name: github.com/adamivancza/bitrise-step-infatuation-bitrise-step
+
+
+inputs:
+  - GIT_CLONE_COMMIT_MESSAGE_BODY: The commit message body
+    opts:
+      title: "Commit message read from Git Clone step"
+      summary: "The commit message read from Git Clone step"
+      description: "The commit message read from Git Clone step"
+      is_expand: true
+      is_required: true
+      value_options: []
+
+outputs:
+  - GIT_CLONE_COMMIT_MESSAGE_BODY:
+    opts:
+      title: "The updated commit message body"
+      summary: "This step replaces the Co-authored-by: part of the commit message with Authored by: The Infatuation"
+      description: "This step replaces the Co-authored-by: part of the commit message with Authored by: The Infatuation"
