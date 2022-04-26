@@ -4,13 +4,14 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"regexp"
 )
 
 func main() {
 	var commitMessage = os.Getenv("GIT_CLONE_COMMIT_MESSAGE_BODY")
 	fmt.Printf("%s", commitMessage)
 	var re = regexp.MustCompile(`Co-authored-by: .*`)
-	var replaced = re.ReplaceAllString(s, "")
+	var replaced = re.ReplaceAllString(commitMessage, "")
 	replaced = replaced + "Authored by: The Infatuation"
 	fmt.Printf("%s", replaced)
 
@@ -19,6 +20,6 @@ func main() {
 		fmt.Printf("Failed to expose output with envman, error: %#v | output: %s", err, cmdLog)
 		os.Exit(1)
 	}
-	
+
 	os.Exit(0)
 }
